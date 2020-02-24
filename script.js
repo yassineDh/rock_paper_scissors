@@ -49,8 +49,9 @@ function playRound(playerSelection, computerSelection) {
         }
     }
     return {
-            "message":message,
-            "win":win};
+        "message": message,
+        "win": win
+    };
 };
 
 function game() {
@@ -62,17 +63,17 @@ function game() {
     for (let i = 0; i < 5; i++) {
         machineMove = computerPlay();
         humanMove = prompt("Choose one the following rock,paper or scissors");
-        let score = playRound(humanMove,machineMove)
-        switch(score.win){
-            case 1 :
+        let score = playRound(humanMove, machineMove)
+        switch (score.win) {
+            case 1:
                 humans++;
                 break;
-            case -1 :
+            case -1:
                 machine++;
                 break;
         };
         console.log(score.message);
-        console.log("Humans : "+humans+" | Machines : "+machine);
+        console.log("Humans : " + humans + " | Machines : " + machine);
     };
 };
 
