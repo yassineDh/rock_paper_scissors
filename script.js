@@ -2,8 +2,10 @@ let moves = ["rock", "paper", "scissors"];
 let handElt = document.getElementById("hand");
 let rockElt = document.getElementById("rock");
 let scissorsElt = document.getElementById("scissor");
+let humanScore = document.getElementById("humanScore");
+let machineScore = document.getElementById("machineScore");
 
-handElt.addEventListener("click",()=>{});
+handElt.addEventListener("click", () => { });
 
 function computerPlay() {
     let min = 0;
@@ -14,12 +16,21 @@ function computerPlay() {
 };
 
 function humanPlay() {
-    let move;
-    handElt.addEventListener("click",()=>{move = "paper"});
-    rockElt.addEventListener("click",()=>{move = "rock"});
-    scissorsElt.addEventListener("click",()=>{move = "scissors"});
-
-    return move;
+    return new Promise((resolve, reject) => {
+        let move;
+        handElt.addEventListener("click", () => {
+            move = "paper";
+            resolve(move)
+        });
+        rockElt.addEventListener("click", () => {
+            move = "rock";
+            resolve(move)
+        });
+        scissorsElt.addEventListener("click", () => {
+            move = "scissors";
+            resolve(move)
+        });
+    })
 };
 
 function playRound(playerSelection, computerSelection) {
@@ -66,15 +77,17 @@ function playRound(playerSelection, computerSelection) {
     };
 };
 
-function game() {
+async function game() {
     let humans = 0;
     let machine = 0;
     let humanMove;
     let machineMove;
+    let nodeHuman = document.createTextNode(humans);
+    let nodeMachine = document.createTextNode(machine);
 
-    for (let i = 0; i < 5; i++) {
+    while (humans < 5 && machine < 5) {
         machineMove = computerPlay();
-        humanMove = humanPlay();
+        humanMove = await humanPlay();
         let score = playRound(humanMove, machineMove)
         switch (score.win) {
             case 1:
@@ -86,7 +99,13 @@ function game() {
         };
         console.log(score.message);
         console.log("Humans : " + humans + " | Machines : " + machine);
+
+        humanScore.appendChild(nodeHuman);
+        machineScore.appendChild(nodeMachine);
+
     };
+
+
 };
 
 game();
