@@ -1,0 +1,23 @@
+
+#scoreDiv{
+    margin: 0 auto;
+    width: 200px;
+}
+
+#scoreRes{
+    display: flex;
+    flex-direction: row;
+}
+
+#mainAction{
+    margin: 0 auto;
+    width: 550px;
+}
+
+#mainAction h4{
+    text-align: center;
+}
+
+img{
+    padding: 40px;
+}

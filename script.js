@@ -1,5 +1,9 @@
 let moves = ["rock", "paper", "scissors"];
+let handElt = document.getElementById("hand");
+let rockElt = document.getElementById("rock");
+let scissorsElt = document.getElementById("scissor");
 
+handElt.addEventListener("click",()=>{});
 
 function computerPlay() {
     let min = 0;
@@ -9,16 +13,24 @@ function computerPlay() {
     return moves[random];
 };
 
+function humanPlay() {
+    let move;
+    handElt.addEventListener("click",()=>{move = "paper"});
+    rockElt.addEventListener("click",()=>{move = "rock"});
+    scissorsElt.addEventListener("click",()=>{move = "scissors"});
+
+    return move;
+};
+
 function playRound(playerSelection, computerSelection) {
-    let playerSelectionUni = playerSelection.toLowerCase();
     let message;
     let win;
 
-    if (playerSelectionUni == computerSelection) {
+    if (playerSelection == computerSelection) {
         message = "Its a tie";
         win = 0;
     } else {
-        switch (playerSelectionUni) {
+        switch (playerSelection) {
             case "rock":
                 if (computerSelection == "paper") {
                     message = "You Lose! Paper beats Rock";
@@ -62,7 +74,7 @@ function game() {
 
     for (let i = 0; i < 5; i++) {
         machineMove = computerPlay();
-        humanMove = prompt("Choose one the following rock,paper or scissors");
+        humanMove = humanPlay();
         let score = playRound(humanMove, machineMove)
         switch (score.win) {
             case 1:
