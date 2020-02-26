@@ -2,11 +2,19 @@
 #scoreDiv{
     margin: 0 auto;
     width: 200px;
+    text-align: center;
 }
 
 #scoreRes{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+ 
+#whoIsWinner{
+    margin: 0px auto;
+    width: 300px;
+    text-align: center;
 }
 
 #mainAction{

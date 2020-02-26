@@ -4,6 +4,7 @@ let rockElt = document.getElementById("rock");
 let scissorsElt = document.getElementById("scissor");
 let humanScore = document.getElementById("humanScore");
 let machineScore = document.getElementById("machineScore");
+let winnerElt = document.getElementById("whoIsWinner");
 
 handElt.addEventListener("click", () => { });
 
@@ -82,8 +83,6 @@ async function game() {
     let machine = 0;
     let humanMove;
     let machineMove;
-    let nodeHuman = document.createTextNode(humans);
-    let nodeMachine = document.createTextNode(machine);
 
     while (humans < 5 && machine < 5) {
         machineMove = computerPlay();
@@ -96,16 +95,16 @@ async function game() {
             case -1:
                 machine++;
                 break;
-        };
+        }
         console.log(score.message);
         console.log("Humans : " + humans + " | Machines : " + machine);
 
-        humanScore.appendChild(nodeHuman);
-        machineScore.appendChild(nodeMachine);
+        humanScore.innerHTML = humans;
+        machineScore.innerHTML = machine;
+    }
 
-    };
-
-
-};
+    let winner = humans == 5 ? "human" : "machine";
+    winnerElt.innerHTML = "The winner is :" + winner;
+}
 
 game();
